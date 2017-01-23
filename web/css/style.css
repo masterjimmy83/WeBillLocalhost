@@ -1,0 +1,115 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 19, 2017, 5:14:03 PM
+    Author     : master
+*/
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password] {
+    width: auto;
+    padding: 12px 20px;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    display: block;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+    display: inline-block;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.logo {
+    width: 10%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+}
+#container{
+    overflow-x: auto;
+    /*background: #4CAF50;*/
+}
+alama{
+    margin-bottom: 100px;
+
+}
+h2{
+    text-align: center;
+    color: blue;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: inline-block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+inputbutton{
+    width: 100%;
+    height: 50%;
+    background-color: #f44336;
+    display: inline-block;
+    border: 10px;
+}
+a{
+    text-decoration: none;
+}
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+table.regTable{
+    margin: 0 auto;
+
+}
+.userTable{
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+}

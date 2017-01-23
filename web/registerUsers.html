@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Clean Energy User Registration</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <form method="post" action="registerUsers">
+            <div class="imgcontainer">
+                <img src="cleanenergy.jpg" alt="Logo" class="logo">
+            </div>
+            <hr/>
+            <div class="container"><h2>Customer Registration Form</h2></div>
+
+            <div class="userTable">
+                <table class ="regTable"><tr>
+                        <td>User ID<td><input type="text" name="user_ID"></td>
+                    </tr>       
+                    <tr>
+                        <td>First Name<td><input type="text" name="given_Name"></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name<td><input type="text" name="sur_Name"></td>
+                    </tr>
+                    <tr>
+                        <td>Password<td><input type="text" name="secret_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>Address<td><input type="text" name="user_Address"></td>
+                    </tr>
+                    <tr>
+                        <td>Email<td><input type="text" name="user_email"></td>
+                    </tr>
+                    <tr>
+                        <td>Meter ID<td><input type="text" name="meter_ID"></td>
+                    </tr>
+                     <tr>
+                         <td>User Role</td>
+                         <td>
+                <input type="radio" name="user_Role" id="customerUser" value="Customer" checked>Customer
+                <input type="radio" name="user_Role" id="adminUser" value="Admin">Admin
+                         </td>
+                    </tr>
+                </table>
+                <br/><br/><button type="submit" value="Send">Register</button><br/>
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="cancelbtn"><a href="admin">View Customer/User List</a></button>
+                <button type="reset" class="cancelbtn">Clear Contents</button>
+            </div>
+        </form>
+    </body>
+</html>
