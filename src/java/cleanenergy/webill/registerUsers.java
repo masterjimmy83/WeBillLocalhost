@@ -7,6 +7,8 @@ package cleanenergy.webill;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -35,9 +37,11 @@ public class registerUsers extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
+     * @throws java.security.NoSuchAlgorithmException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         //String userID = request.getParameter("user_ID");   ********* No need since it will be Auto Generated
@@ -48,12 +52,28 @@ public class registerUsers extends HttpServlet {
         String email = request.getParameter("user_email");
         String meterID = request.getParameter("meter_ID");
         String userRole = request.getParameter("user_Role");
+        
+                    // Creating the Hash code of the secret, since it does not saved as a plain text
+            byte[] md5SecretBytes = MessageDigest.getInstance("MD5").digest(secret.getBytes());
+            //we need the hash code as a string
+            String md5Secret;
+            StringBuilder strBuilder = new StringBuilder();
+            String tmpStr;
+            for (int i = 0; i < md5SecretBytes.length; i++) {
+                tmpStr = Integer.toHexString((0xFF & md5SecretBytes[i]));
+                if (tmpStr.length() == 1) {
+                    strBuilder.append('0');
+                }
+                strBuilder.append(tmpStr);
+            }
+            md5Secret = strBuilder.toString();
+        
         try {
             /* TODO output your page here. You may use following sample code. */
             //String sql = "insert into users values ('" + userID + "', '" + givenName + "', '" + SurName + "', '" + secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
             
             // The belwo Query removed the userID since it will be auto Generated, and also specify the field to insert into
-            String sql = "insert into customers (givenName,SurName,secret,address,email,meterID,userRole) values ('" + givenName + "', '" + SurName + "', '" + secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
+            String sql = "insert into customers (givenName,SurName,secret,address,email,meterID,userRole) values ('" + givenName + "', '" + SurName + "', '" + md5Secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
             PreparedStatement pst = sqlConnection.prepareStatement(sql);
             boolean execute = pst.execute();
 
@@ -94,15 +114,36 @@ public class registerUsers extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(registerUsers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(registerUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+        public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -119,6 +160,8 @@ public class registerUsers extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(registerUsers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(registerUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -127,13 +170,10 @@ public class registerUsers extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+// </editor-fold>
 
     @Override
-    public void init() throws ServletException {
+        public void init() throws ServletException {
         super.init();
         if (sqlConnection == null) {
             System.out.println("Establish a new Connection to the database.....");
