@@ -54,7 +54,7 @@ public class editUser extends HttpServlet {
                     + "<hr/>\n"
                     + "<div class=\"container\"><h2>Customer List</h2></div>\n"
             );
-            String sql = "select userID, givenName, SurName, address, email, meterID from users where userRole='Customer';";
+            String sql = "select userID, givenName, SurName, address, email, meterID from customers where userRole='Customer';";
             PreparedStatement pst = sqlConnection.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             out.println("<div class=\"container\" id=\"container\">");
