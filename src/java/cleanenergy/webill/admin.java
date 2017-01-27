@@ -59,7 +59,11 @@ public class admin extends HttpServlet {
                     + "<hr/>\n"
                     + "<div class=\"container\"><h2>Customer List</h2></div>\n"
             );
-            String sql = "select userID, givenName, SurName, address, email, meterID from users where userRole='Customer';";
+
+            //String sql = "select userID, givenName, SurName, address, email, meterID from users where userRole='Customer';";
+            
+                        // Changed the table name where to pick the values and also concatnet the values to read in the needed format.
+            String sql = "select concat('user-',userID), givenName, SurName, address, email, meterID from customers where userRole='Customer';";
             PreparedStatement pst = sqlConnection.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             out.println("<div class=\"container\" id=\"container\">");
