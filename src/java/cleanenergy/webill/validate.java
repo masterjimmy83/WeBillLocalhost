@@ -109,10 +109,11 @@ public class validate extends HttpServlet {
                     }
                 }
                 if ("Customer".equals(userRole)) {
-                    String idSecretMatchQuery = "select * from users where userID='" + userID + "'and secret ='" + md5Secret + "' and userRole ='" + userRole + "';";
+                    //String idSecretMatchQuery = "select * from users where userID='" + userID + "'and secret ='" + md5Secret + "' and userRole ='" + userRole + "';";
 
-//String idSecretMatchQuery = "SELECT CONCAT('user-', userID), secret, userRole FROM customers WHERE CONCAT('user-',userID) = '" + userID + "'and secret ='" + md5Secret + "' and userRole ='" + userRole + "';";
-                    //String idSecretMatchQuery = "SELECT CONCAT('user-', userID), secret, userRole FROM customers WHERE CONCAT('user-',userID) = "+userID+" and secret="+md5Secret+" and userRole="+userRole+";";
+                    //SELECT userID, secret, userRole FROM customers WHERE CONCAT('user-',userID) = "user-002" and secret="df76807c147cb7e4348b55dd4e6cb48e" and userRole="Customer";
+                    String idSecretMatchQuery = "SELECT userID, givenName, secret, userRole FROM customers WHERE CONCAT('user-',userID) = '" + userID + "'and secret ='" + md5Secret + "' and userRole ='" + userRole + "';";
+                    //String idSecretMatchQuery = "SELECT userID, secret, userRole FROM customers WHERE CONCAT('user-',userID) = "+ userID +" and secret="+ md5Secret + " and userRole=" + userRole + ";";
                     ResultSet matchingUser = sqlConnection.createStatement().executeQuery(idSecretMatchQuery);
                     if (matchingUser.next()) {
 
