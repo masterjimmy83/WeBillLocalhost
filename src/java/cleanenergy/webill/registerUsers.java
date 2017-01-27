@@ -40,7 +40,7 @@ public class registerUsers extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String userID = request.getParameter("user_ID");
+        //String userID = request.getParameter("user_ID");   ********* No need since it will be Auto Generated
         String givenName = request.getParameter("given_Name");
         String SurName = request.getParameter("sur_Name");
         String secret = request.getParameter("secret_pass");
@@ -50,7 +50,10 @@ public class registerUsers extends HttpServlet {
         String userRole = request.getParameter("user_Role");
         try {
             /* TODO output your page here. You may use following sample code. */
-            String sql = "insert into users values ('" + userID + "', '" + givenName + "', '" + SurName + "', '" + secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
+            //String sql = "insert into users values ('" + userID + "', '" + givenName + "', '" + SurName + "', '" + secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
+            
+            // The belwo Query removed the userID since it will be auto Generated, and also specify the field to insert into
+            String sql = "insert into customers (givenName,SurName,secret,address,email,meterID,userRole) values ('" + givenName + "', '" + SurName + "', '" + secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
             PreparedStatement pst = sqlConnection.prepareStatement(sql);
             boolean execute = pst.execute();
 
