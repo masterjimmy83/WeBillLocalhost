@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,8 +61,23 @@ public class editUser extends HttpServlet {
             out.println("<div class=\"container\" id=\"container\">");
             String str = "<table><tr><th>Operation</th><th>User ID</th><th>First Name</th><th>Sur Name</th><th>Address</th><th>e-Mail</th><th>Meter Number</th></tr>";
             while (rs.next()) {
-                str += "<tr><td>&nbsp;<a href=\"editUser\">Edit</a>&nbsp;&nbsp;<a href=\"deleteCustomer\">Delete</a>&nbsp;</td><td>" + rs.getString(1) + "</td><td>" + rs.getString(2) + "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td><td>" + rs.getString(5) + "</td><td>" + rs.getString(6) + "</td></tr>";
+                               
+String userID = rs.getString("userID");
+            String givenName = rs.getString("givenName");
+            String SurName = rs.getString("SurName"); 
+            String address = rs.getString("address"); 
+            String email = rs.getString("email"); 
+            String meterID = rs.getString("meterID"); 
+            String id = rs.getString("userID");
 
+// Enable Session here and take the session ID
+HttpSession session = request.getSession(true); 
+session.setAttribute("userID",id);
+//out.println("<tr><td align=\"center\">" + singername + "</td><td align=\"center\">" + stagename + "</td><td align=\"center\">" + language + "</td><td align=\"center\"><a href = \"./deleterow?userID="+id+"\">Delete</a></td></tr>");
+
+// My First Code, which I have to Correct.....
+                str += "<tr><td>&nbsp;<a href=\"editUser\">Edit</a>&nbsp;&nbsp;<a href=\"deleteCustomer?userID="+id+"\">Delete</a>&nbsp;</td><td>" + userID + "</td><td>" + givenName + "</td><td>" + SurName + "</td><td>" + address + "</td><td>" + email + "</td><td>" + meterID + "</td></tr>";
+                                                                                
             }
             str += "</table>";
             out.println(str);
