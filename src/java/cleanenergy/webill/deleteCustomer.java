@@ -18,6 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -54,32 +56,27 @@ public class deleteCustomer extends HttpServlet {
                     + "<hr/>\n"
                     + "<div class=\"container\"><h2>Deleting Customer from the System</h2></div>\n"
             );
+            
 
             String id = request.getParameter("userID");
-            
-            //String id = request.getParameter("userID").toString();
-            //String sql = "select userID, givenName, SurName, address, email, meterID from customers where userRole='Customer';";
             String sql = "delete from customers where userID=?;";
-
-            //st= con.prepareStatement("delete from singerdetails where userID = ?");
-            //st.setString(1, id);
-            //st.executeUpdate();
-            //int i = st.executeUpdate();
-
             PreparedStatement pst = sqlConnection.prepareStatement(sql);
             pst.setString(1, id);
             pst.executeUpdate();
             int i = pst.executeUpdate();
+            
+                        int p = JOptionPane.showConfirmDialog(null, "Are You Sure You want to delete?", "Delete Customer", JOptionPane.YES_NO_OPTION);
+            if (p==0){
 
             if(i!=0)
             out.println("Deleting row...");
             else if (i==0)
             {
-            out.println("<div class=\"container\">Customer Records Deleted Successfully</div>\n");
-            //out.println("<br>Row has been deleted successfully.");
+            out.println("<div class=\"container\">Customer Records Deleted Successfully</div>\n");         
             }
 
             out.println("</div>");
+             }
 
             out.println("<div class=\"container\" style=\"background-color:#f1f1f1\">\n"
                     + "<button type=\"button\" class=\"cancelbtn\"><a href=\"admin\">View Clean Energy Customer List</a></button>\n"
@@ -91,6 +88,7 @@ public class deleteCustomer extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+       
 
     }
 
