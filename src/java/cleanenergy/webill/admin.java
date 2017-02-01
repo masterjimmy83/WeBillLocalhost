@@ -43,7 +43,7 @@ public class admin extends HttpServlet {
         HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
                     if(session.getAttribute("userName") == null){
-            response.sendRedirect("registerUsers.html");
+            response.sendRedirect("registerUsers.jsp");
         }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -78,7 +78,7 @@ public class admin extends HttpServlet {
 
             out.println("<div class=\"container\" style=\"background-color:#f1f1f1\">\n"
                     + "<button type=\"button\" class=\"cancelbtn\"><a href=\"editUser\">Edit Customer/User Records</a></button>\n"
-                    + "<button type=\"button\" class=\"cancelbtn\"><a href=\"registerUsers.html\">Register New Customer</a></button><br/><br/>\n"
+                    + "<button type=\"button\" class=\"cancelbtn\"><a href=\"registerUsers.jsp\">Register New Customer</a></button><br/><br/>\n"
                     + "<button type=\"button\"><a href=\"logout\" class=\"backhomebtn\" > Log Out</a></button>\n"
                     + "</div>\n"
             );
