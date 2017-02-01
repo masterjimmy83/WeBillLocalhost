@@ -50,7 +50,7 @@ public class registerUsers extends HttpServlet {
         String secret = request.getParameter("secret_pass");
         String address = request.getParameter("user_Address");
         String email = request.getParameter("user_email");
-        String meterID = request.getParameter("meter_ID");
+        String meterID = request.getParameter("meterID");
         String userRole = request.getParameter("user_Role");
         
                     // Creating the Hash code of the secret, since it does not saved as a plain text
@@ -72,28 +72,7 @@ public class registerUsers extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             //String sql = "insert into users values ('" + userID + "', '" + givenName + "', '" + SurName + "', '" + secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
             
-            
-            // This one take values from Meters Table, and will Insert into the Customers Tables. The MeterID in Meters Table has been added Manually
-                                   // Changed the table name where to pick the values and also concatnet the values to read in the needed format.
-            String metersql = "select meterID from meters;";
-            PreparedStatement meterIDpst = sqlConnection.prepareStatement(metersql);
-            ResultSet meterIDrs = meterIDpst.executeQuery();
-            //out.println("<div class=\"container\" id=\"container\">");
-            //String str = "<table><tr><th>User ID</th><th>First Name</th><th>Sur Name</th><th>Address</th><th>e-Mail</th><th>Meter Number</th></tr>";
-            String meterIDstr;
-            while (String meterIDrs.next()) {
-                meterIDstr.getString(1);
-
-            }
-            meterIDstr += "</table>";
-            out.println(meterIDstr);
-            out.println("</div>"); 
-
-
-
-
-
-// The belwo Query removed the userID since it will be auto Generated, and also specify the field to insert into
+            // The belwo Query removed the userID since it will be auto Generated, and also specify the field to insert into
             String sql = "insert into customers (givenName,SurName,secret,address,email,meterID,userRole) values ('" + givenName + "', '" + SurName + "', '" + md5Secret + "', '" + address + "', '" + email + "', '" + meterID + "', '" + userRole + "')";
             PreparedStatement pst = sqlConnection.prepareStatement(sql);
             boolean execute = pst.execute();
@@ -113,7 +92,7 @@ public class registerUsers extends HttpServlet {
             out.println("<div class=\"container\">Registered Successful</div>\n");
             out.println("<div class=\"container\" style=\"background-color:#f1f1f1\">\n"
                     + "<button type=\"button\" class=\"cancelbtn\"><a href=\"admin\">View Registered Customers</a></button>\n"
-                    + "<button type=\"button\" class=\"cancelbtn\"><a href=\"registerUsers.html\">Register New Customer</a></button><br/><br/>\n"
+                    + "<button type=\"button\" class=\"cancelbtn\"><a href=\"registerUsers.jsp\">Register New Customer</a></button><br/><br/>\n"
                     + "<button type=\"button\"><a href=\"index.html\" class=\"backhomebtn\" > Log Out</a></button>\n"
                     + "</div>\n"
             );
