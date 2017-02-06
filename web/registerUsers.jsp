@@ -68,7 +68,7 @@
                         <td>Last Name</td><td><input type="text" name="sur_Name"></td>
                     </tr>
                     <tr>
-                        <td>Password<td><input type="text" name="secret_pass"></td>
+                        <td>Password<td><input type="password" name="secret_pass"></td>
                     </tr>
                     <tr>
                         <td>Address<td><input type="text" name="user_Address"></td>
@@ -79,7 +79,7 @@
                     <tr>
                         <td>Meter Number</td><td id="meterOptions">
 
-                            <select name="meterID">
+                            <select name="meterID" id="meterID">
                                 <%  String meterID;
                                     while (resultset.next()) {
                                         meterID = resultset.getString("meterID");
