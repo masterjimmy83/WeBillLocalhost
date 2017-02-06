@@ -22,7 +22,9 @@
 
         Statement statement = connection.createStatement();
 
-        resultset = statement.executeQuery("select meterID from meters;");
+        //resultset = statement.executeQuery("select meterID from meters;");
+      //resultset = statement.executeQuery("SELECT distinct meters.meterID FROM meters JOIN customers ON meters.meterID <> customers.meterID;");
+      resultset = statement.executeQuery("SELECT * FROM meters where meterID NOT IN (select meterID from Customers);");
 %>
 
 <%
