@@ -113,3 +113,15 @@ table.regTable{
     height: 50%;
     margin: 0 auto;
 }
+
+#meterOptions {
+    vertical-align: bottom;
+        width: 50px;
+}
+#meterID {
+        height: 40px;
+        width: 100px;
+        font-size: 18px;
+    color:inherit;
+    font-family: courier;
+}
