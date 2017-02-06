@@ -85,7 +85,7 @@ session.setAttribute("userID",id);
 
             out.println("<div class=\"container\" style=\"background-color:#f1f1f1\">\n"
                     + "<button type=\"button\" class=\"cancelbtn\"><a href=\"admin\">View Clean Energy Customer List</a></button>\n"
-                    + "<button type=\"button\" class=\"cancelbtn\"><a href=\"registerUsers.html\">Register New Customer</a></button><br/><br/>\n"
+                    + "<button type=\"button\" class=\"cancelbtn\"><a href=\"registerUsers.jsp\">Register New Customer</a></button><br/><br/>\n"
                     + "<button type=\"button\"><a href=\"index.html\" class=\"backhomebtn\" > Log Out</a></button>\n"
                     + "</div>\n"
             );
