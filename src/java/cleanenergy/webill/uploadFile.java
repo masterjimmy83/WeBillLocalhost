@@ -46,6 +46,11 @@ public class uploadFile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
+        
+        //Checking Sessions if the userName has values, means person have loged in
+                if(session.getAttribute("userName") == null){
+            response.sendRedirect("index.html");
+        } else {
         try (PrintWriter out = response.getWriter()) {
             //Get the file from the request. It is a multipart file.
             final Part filePart = request.getPart("fileToUpload");
@@ -83,6 +88,7 @@ public class uploadFile extends HttpServlet {
                 System.err.println("Error in the Servlet uploadFile: " + ex.getMessage());
             }
         }
+    }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
