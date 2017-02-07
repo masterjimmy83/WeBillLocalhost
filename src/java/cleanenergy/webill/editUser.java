@@ -45,7 +45,7 @@ public class editUser extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet customerList</title>");
+            out.println("<title>Update Customer List</title>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">");
             out.println("</head>");
             out.println("<body>");
@@ -53,7 +53,7 @@ public class editUser extends HttpServlet {
                     + " <img src=\"cleanenergy.jpg\" alt=\"Logo\" class=\"logo\">\n"
                     + "</div>\n"
                     + "<hr/>\n"
-                    + "<div class=\"container\"><h2>Customer List</h2></div>\n"
+                    + "<div class=\"container\"><h2>Update Customer Information</h2></div>\n"
             );
             String sql = "select userID, givenName, SurName, address, email, meterID from customers where userRole='Customer';";
             PreparedStatement pst = sqlConnection.prepareStatement(sql);
