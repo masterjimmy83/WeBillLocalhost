@@ -35,37 +35,41 @@ public class showUploads extends HttpServlet {
 
         //The full path to the file which has been uploaded should have been
         //saved in the session. Get it.
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         String imageFilePath = (String) session.getAttribute("imageFilePath");
-        if(session.getAttribute("userName") == null){
+        if (session.getAttribute("userName") == null) {
             response.sendRedirect("index.html");
         } else {
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>\n"
-                    + "<html>\n"
-                    + "    <head>\n"
-                    + "        <title>WeBill file upload page</title>\n"
-                    + "        <meta charset=\"UTF-8\">\n"
-                    + " <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n"
-                    + "    </head>\n"
-                    + "    <body>\n"
-                    + "<div class=\"imgcontainer\">\n"
-                    + "                <img src=\"cleanenergy.jpg\" alt=\"Logo\" class=\"logo\">\n"
-                    + "            </div>"
-                    + "        <hr />\n"
-                    + "<div><h2>Uploaded Files</h2></div>"
-                    + "<div class=\"container\">\n"
-                    + "                <h3> " + imageFilePath.substring(imageFilePath.lastIndexOf("_") + 1) + " </h3>\n"
-                    + "            </div>"
-                    + "                <div class=\"container\" style=\"background-color:#f1f1f1\">\n"
-                    + "                    <button type=\"button\" class=\"cancelbtn\"><a href=\"GPSReader\">Read GPS information of the file.</a></button>\n"
-                    + "                    <button type=\"button\" class=\"cancelbtn\"><a href=\"qrReader\">Read the information from the QR code in the file.</a></button><br/><br/>\n"
-                    + "                    <button type=\"button\"><a href=\"logout\" class=\"backhomebtn\" > Log Out</a></button>\n"
-                    + "            </div>"
-                    + "    </body>\n"
-                    + "</html>");
+            if (session.getAttribute("imageFilePath") == null) {
+                response.sendRedirect("index.html");
+            } else {
+                try (PrintWriter out = response.getWriter()) {
+                    out.println("<!DOCTYPE html>\n"
+                            + "<html>\n"
+                            + "    <head>\n"
+                            + "        <title>WeBill file upload page</title>\n"
+                            + "        <meta charset=\"UTF-8\">\n"
+                            + " <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n"
+                            + "    </head>\n"
+                            + "    <body>\n"
+                            + "<div class=\"imgcontainer\">\n"
+                            + "                <img src=\"cleanenergy.jpg\" alt=\"Logo\" class=\"logo\">\n"
+                            + "            </div>"
+                            + "        <hr />\n"
+                            + "<div><h2>Uploaded Files</h2></div>"
+                            + "<div class=\"container\">\n"
+                            + "                <h3> " + imageFilePath.substring(imageFilePath.lastIndexOf("_") + 1) + " </h3>\n"
+                            + "            </div>"
+                            + "                <div class=\"container\" style=\"background-color:#f1f1f1\">\n"
+                            + "                    <button type=\"button\" class=\"cancelbtn\"><a href=\"GPSReader\">Read GPS information of the file.</a></button>\n"
+                            + "                    <button type=\"button\" class=\"cancelbtn\"><a href=\"qrReader\">Read the information from the QR code in the file.</a></button><br/><br/>\n"
+                            + "                    <button type=\"button\"><a href=\"logout\" class=\"backhomebtn\" > Log Out</a></button>\n"
+                            + "            </div>"
+                            + "    </body>\n"
+                            + "</html>");
+                }
+            }
         }
-    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
